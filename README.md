@@ -8,7 +8,7 @@ Servizio parcheggio per prendere i posti auto
 GET /parcheggio/lista
 
 Servizio di insert di un nuovo parcheggio
-POST /parcheggio/nuovo
+POST /parcheggio/nuovo    <-- parcheggio
 
 ### Macchina
 Servizio per la select di una macchina dal suo id
