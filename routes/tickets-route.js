@@ -7,22 +7,26 @@ router.get('/lista',(req,res)=>{
 router.get('/',(req,res)=>{
     const id = req.query.id;
     //Servizio per prendere un ticket dato il suo id
+    res.send('GET TICKET BY ID');
 });
 
 router.post('/nuovo',(req,res)=>{
     const ticket = req.body;
     //Servizio di inserimento di un nuovo ticket
+    res.send('POST NUOVO TICKET');
 });
 
 router.get('/emissione',(req,res)=>{
     const targa = req.query.targa;
     const nomePosto = req.query.nomePosto;
     //Servizio che ritorna una join tra tickets macchine postoAuto dati targa e nomePosto
+    res.send('GET JOIN TICKET');
 });
 
 router.post('/chiusura',(req,res)=>{
     const oraUscita = req.body.oraUscita;
     //Servizio di chiusura di un ticket con l'aggiornamento del campo ora di uscita
+    res.send('POST CHIUSURA TICKET');
 });
 
 module.exports = router;
