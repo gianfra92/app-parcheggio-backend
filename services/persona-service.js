@@ -26,8 +26,8 @@ const getListaPersona = ()=>{
 
 const getPersonabyId = (id)=>{
     return client.query(`   SELECT id, nome, cognome, id_macchina
-                            FROM parcheggioschema.persone
-                            WHERE persone.id = $1;`,
+                            FROM persona
+                            WHERE id = $1;`,
                             [id])
                             .then(result=> result.rows)
                             .catch(error=>{
@@ -39,7 +39,7 @@ const getPersonabyId = (id)=>{
 const getPersonaJoinMacchina = (targa)=>{
     return client.query(`   SELECT p.nome, p.cognome, m.targa, m.modello
                             FROM persona as p
-                            INNER JOIN macchine as m
+                            INNER JOIN macchina as m
                             ON m.id = p.id_macchina
                             WHERE macchine.targa = $1;`,
                             [id])
