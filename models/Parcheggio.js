@@ -1,5 +1,5 @@
 class Parcheggio{
-    constructor(tariffa,sanzione,idPostoAuto){
+    constructor({tariffa,sanzione,idPostoAuto}){
         this.id;
         this.tariffa = tariffa;
         this.sanzione = sanzione;

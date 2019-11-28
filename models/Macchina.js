@@ -1,5 +1,5 @@
 class Macchina{
-    constructor(targa,modello){
+    constructor({targa,modello}){
         this.id;
         this.targa = targa;
         this.modello = modello;

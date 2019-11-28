@@ -1,26 +1,27 @@
 const router = require('express').Router();
+const personaService = require('../services/persona-service');
 
 router.get('/lista',(req,res)=>{
     //Servizio per prendere la lista delle persone
-    res.send('GET LISTA PERSONE');
+    personaService.getListaPersona().then(lista=> res.json(lista));
 });
 
 router.get('/',(req,res)=>{
     const id = req.query.id;
     //Servizio per la select di una persona dal suo id
-    res.send('GET SINGOLA PERSONA');
+    personaService.getPersonabyId(id).then(persona=>res.json(persona));
 });
 
 router.get('/personeMacchine',(req,res)=>{
-    const targa = req.query.targa;
+    const id = req.query.targa;
     //Servizio per la innerJoin e ritorno delle persone e macchine
-    res.send('GET JOIN PERSONe MACCHINe');
+    personaService.getPersonaJoinMacchina(targa).then(personamacchina=> res.json(personamacchina));
 })
 
 router.post('/nuovo',(req,res)=>{
     const persona = req.body;
     //Servizio per insert di una nuova persona
-    res.send('POST NUOVA PERSONA');
+    personaService.insertPersona(persona).then(result => res.json(result));
 });
 
 module.exports = router;

@@ -1,31 +1,21 @@
 const router = require('express').Router();
-const Macchina = require('../models/Macchina');
-
-//dati mock
-const macchina1 = new Macchina('DB888SV','Ford');
-const macchina2 = new Macchina('DB888SV','Ford');
-macchina1.id = 1;
-macchina2.id = 2;
-const macchinaList = [macchina1,macchina2];
+const macchinaService = require('../services/macchina-service');
 
 router.get('/lista',(req,res)=>{
-    //Servizio di select per la lista di macchine    
-    res.json(macchinaList);
+    //Servizio di select per la lista di macchine
+    macchinaService.getListaMacchine().then(lista=> res.json(lista));
 });
 
 router.get('/',(req,res)=>{
     const id = req.query.id;
-    let result = macchinaList.find(element => element.id == id);
-    if (result)
-        res.json(result);
-    else
-        res.status(400).json({error: "Nessun elemento trovato"});
+    macchinaService.getMacchina(id).then(macchina => res.json(macchina));
     //Servizio per la select di una macchina dal suo id
 });
 
 router.post('/nuovo',(req,res)=>{
+    const macchina = req.body;
     //Servizio di insert di una nuova macchina
-    res.send('Macchina inserita');
+    macchinaService.insertMacchina(macchina).then((result)=>res.json(result));
 });
 
 module.exports = router;

@@ -1,5 +1,5 @@
 class PostoAuto{
-    constructor (nomePosto,isOccupato){
+    constructor ({nomePosto,isOccupato}){
         this.id;
         this.nomePosto;
         this.isOccupato;
