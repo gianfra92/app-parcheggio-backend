@@ -13,7 +13,7 @@ router.get('/',(req,res)=>{
 });
 
 router.get('/personeMacchine',(req,res)=>{
-    const id = req.query.targa;
+    const targa = req.query.targa;
     //Servizio per la innerJoin e ritorno delle persone e macchine
     personaService.getPersonaJoinMacchina(targa).then(personamacchina=> res.json(personamacchina));
 })

@@ -3,12 +3,13 @@ const ticketService = require('../services/ticket-service');
 
 router.get('/lista',(req,res)=>{
     //Servizio per prendere la lista dei tickets salvati
+    ticketService.getListaTicket().then(result=> res.json(result));
 });
 
 router.get('/',(req,res)=>{
     const id = req.query.id;
     //Servizio per prendere un ticket dato il suo id
-    ticketService.getListaTicket().then(lista=> res.json(lista));
+    ticketService.getTicketbyId(id).then(lista=> res.json(lista));
 });
 
 router.post('/nuovo',(req,res)=>{
