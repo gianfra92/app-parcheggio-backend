@@ -3,7 +3,7 @@ const Parcheggio = require('../models/Parcheggio');
 
 const getListaParcheggio = ()=>{
     return client.query(`   SELECT id, id_posto_auto, tariffa, sanzione
-                            FROM parcheggi;`)
+                            FROM parcheggio;`)
                             .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
