@@ -4,6 +4,7 @@ const PostoAuto = require('../models/PostoAuto');
 const getListaPostiAuto = ()=>{
     return client.query(`   SELECT id, nome_posto, is_occupato
                             FROM posto_auto;`)
+                            .then(result=> result.rows)
                             .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
@@ -15,6 +16,7 @@ const getPostoAutobyId = (id)=>{
                             FROM posto_auto
                             WHERE id = $1;`,
                             [id])
+                            .then(result=> result.rows)
                             .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
@@ -25,6 +27,7 @@ const getPostiLiberi = ()=>{
     return client.query(`   SELECT id, nome_posto, is_occupato
                             FROM posto_auto
                             WHERE is_occupato = 0;`)
+                            .then(result=> result.rows)
                             .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
@@ -37,6 +40,7 @@ const insertPostoAuto = (postoAuto)=>{
                             (nome_posto, is_occupato)
                             VALUES($1, $2);`,
                             [newPostoAuto.nomePosto,newPostoAuto.isOccupato])
+                            .then(()=> 'ok')
                             .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
@@ -48,6 +52,7 @@ const updatePostoAuto = (id,occupato)=>{
                             SET is_occupato=$2
                             WHERE id=$1;`,
                             [id,occupato])
+                            .then(()=> 'ok')
                             .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";

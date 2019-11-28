@@ -4,6 +4,7 @@ const Ticket = require('../models/Ticket');
 const getListaTicket = () =>{
     return client.query(`   SELECT id, data_emissione, ora_emissione, ora_uscita, id_macchina, id_parcheggio
                             FROM ticket;`)
+                            .then(result=> result.rows)
                             .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
@@ -14,7 +15,9 @@ const getTicketbyId = (id)=>{
     return client.query(`   SELECT id, data_emissione, ora_emissione, ora_uscita, id_macchina, id_parcheggio
                             FROM ticket
                             WHERE tickets.id = $1;`,
-                            [id]).catch(error=>{
+                            [id])
+                            .then(result=> result.rows)
+                            .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
                             });
@@ -26,6 +29,7 @@ const insertTicket = (ticket)=>{
                             (data_emissione, ora_uscita, id_macchina, id_posto_auto)
                             VALUES($1, $2, $3, $4);`,
                             [newTicket.dataEmissione,newTicket.oraUscita,newTicket.idMacchina,newTicket.idPostoAuto])
+                            .then(()=> 'ok')
                             .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
@@ -41,6 +45,7 @@ const getTicketsJoinMacchine = (targa,posto)=>{
                             ON posto_auto.id = ticket.id_posto_auto
                             WHERE macchina.targa = $1, posto_auto.nome_posto = $2;`,
                             [targa,posto])
+                            .then(result=> result.rows)
                             .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
@@ -52,6 +57,7 @@ const updateTicket = (id,oraUscita)=>{
                             SET  ora_uscita=$1
                             WHERE id=$2;`,
                             [id,oraUscita])
+                            .then(()=> 'ok')
                             .catch(error=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
