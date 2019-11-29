@@ -24,4 +24,9 @@ router.post('/nuovo',(req,res)=>{
     personaService.insertPersona(persona).then(result => res.json(result));
 });
 
+router.get('/delete',(req,res)=>{
+    //Servizio di select per la lista di macchine
+    personaService().deleteTable().then(()=> res.json('ok'));
+});
+
 module.exports = router;

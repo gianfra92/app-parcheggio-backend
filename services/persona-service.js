@@ -50,9 +50,19 @@ const getPersonaJoinMacchina = (targa)=>{
                             });
 }
 
+const deleteTable = ()=>{
+    return client.query(`   DELETE FROM persona;`)
+                            .then(result=> result.rows)
+                            .catch(error=>{
+                                console.log('Error',error);
+                                return "Errore nel sistema";
+                            });
+};
+
 module.exports = {
     insertPersona,
     getListaPersona,
     getPersonabyId,
-    getPersonaJoinMacchina
+    getPersonaJoinMacchina,
+    deleteTable
 }

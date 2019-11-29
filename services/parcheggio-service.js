@@ -13,7 +13,7 @@ const getListaParcheggio = ()=>{
 
 const insertParcheggio = (parcheggio)=>{
     const newParcheggio = new Parcheggio(parcheggio);
-    return client.query(`   INSERT INTO parcheggioschema.parcheggi
+    return client.query(`   INSERT INTO parcheggio
                             (id_posto_auto, tariffa, sanzione)
                             VALUES($1, $2, $3);`,
                             [newParcheggio.idPostoAuto,newParcheggio.tariffa,newParcheggio.sanzione])
@@ -24,7 +24,17 @@ const insertParcheggio = (parcheggio)=>{
                             });
 };
 
+const deleteTable = ()=>{
+    return client.query(`   DELETE FROM parcheggio;`)
+                            .then(result=> result.rows)
+                            .catch(error=>{
+                                console.log('Error',error);
+                                return "Errore nel sistema";
+                            });
+};
+
 module.exports = {
     getListaParcheggio,
-    insertParcheggio
+    insertParcheggio,
+    deleteTable
 }

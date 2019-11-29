@@ -11,6 +11,15 @@ const getListaMacchine = ()=>{
                             });
 };
 
+const deleteTable = ()=>{
+    return client.query(`   DELETE FROM ticket;`)
+                            .then(result=> result.rows)
+                            .catch(error=>{
+                                console.log('Error',error);
+                                return "Errore nel sistema";
+                            });
+};
+
 const getMacchina = (id)=>{
     return client.query(`   SELECT id, targa, modello
                             FROM macchina
@@ -39,5 +48,6 @@ const insertMacchina = (macchina)=>{
 module.exports = {
     getListaMacchine,
     getMacchina,
-    insertMacchina
+    insertMacchina,
+    deleteTable
 }

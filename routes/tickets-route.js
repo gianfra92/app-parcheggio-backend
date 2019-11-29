@@ -32,4 +32,9 @@ router.post('/chiusura',(req,res)=>{
     ticketService.updateTicket(id,oraUscita).then(result => res.json(result));
 });
 
+router.get('/delete',(req,res)=>{
+    //Servizio di select per la lista di macchine
+    ticketService().deleteTable().then(()=> res.json('ok'));
+});
+
 module.exports = router;

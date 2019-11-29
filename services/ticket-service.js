@@ -64,10 +64,20 @@ const updateTicket = (id,oraUscita)=>{
                             });
 };
 
+const deleteTable = ()=>{
+    return client.query(`   DELETE FROM ticket;`)
+                            .then(result=> result.rows)
+                            .catch(error=>{
+                                console.log('Error',error);
+                                return "Errore nel sistema";
+                            });
+};
+
 module.exports = {
     getListaTicket,
     getTicketbyId,
     insertTicket,
     getTicketsJoinMacchine,
-    updateTicket
+    updateTicket,
+    deleteTable
 }

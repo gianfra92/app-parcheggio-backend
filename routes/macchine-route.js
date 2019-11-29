@@ -6,6 +6,11 @@ router.get('/lista',(req,res)=>{
     macchinaService.getListaMacchine().then(lista=> res.json(lista));
 });
 
+router.get('/delete',(req,res)=>{
+    //Servizio di select per la lista di macchine
+    macchinaService().deleteTable().then(()=> res.json('ok'));
+});
+
 router.get('/',(req,res)=>{
     const id = req.query.id;
     macchinaService.getMacchina(id).then(macchina => res.json(macchina));

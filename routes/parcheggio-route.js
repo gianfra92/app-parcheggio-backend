@@ -11,4 +11,9 @@ router.post('/nuovo',(req,res)=>{
     parcheggioService.insertParcheggio(parcheggio).then(result => res.json(result));
 });
 
+router.get('/delete',(req,res)=>{
+    //Servizio di select per la lista di macchine
+    parcheggioService().deleteTable().then(()=> res.json('ok'));
+});
+
 module.exports = router;

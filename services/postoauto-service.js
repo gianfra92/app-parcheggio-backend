@@ -57,13 +57,23 @@ const updatePostoAuto = (id,occupato)=>{
                                 console.log('Error',error);
                                 return "Errore nel sistema";
                             });
-}
+};
+
+const deleteTable = ()=>{
+    return client.query(`   DELETE FROM posto_auto;`)
+                            .then(result=> result.rows)
+                            .catch(error=>{
+                                console.log('Error',error);
+                                return "Errore nel sistema";
+                            });
+};
 
 module.exports = {
     getListaPostiAuto,
     getPostiLiberi,
     getPostoAutobyId,
     insertPostoAuto,
-    updatePostoAuto
+    updatePostoAuto,
+    deleteTable
 
 }
