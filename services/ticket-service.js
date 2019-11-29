@@ -2,7 +2,7 @@ const client = require('../pg_session/Client');
 const Ticket = require('../models/Ticket');
 
 const getListaTicket = () =>{
-    return client.query(`   SELECT id, data_emissione, ora_uscita, id_macchina, id_parcheggio
+    return client.query(`   SELECT id, data_emissione, ora_uscita, id_macchina, id_posto_auto
                             FROM ticket;`)
                             .then(result=> result.rows)
                             .catch(error=>{
@@ -12,7 +12,7 @@ const getListaTicket = () =>{
 };
 
 const getTicketbyId = (id)=>{
-    return client.query(`   SELECT id, data_emissione, ora_uscita, id_macchina, id_parcheggio
+    return client.query(`   SELECT id, data_emissione, ora_uscita, id_macchina, id_posto_auto
                             FROM ticket
                             WHERE tickets.id = $1;`,
                             [id])
