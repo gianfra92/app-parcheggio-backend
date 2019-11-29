@@ -34,7 +34,7 @@ const getMacchina = (id)=>{
 
 const insertMacchina = (macchina)=>{
     const newMacchina = new Macchina(macchina);
-    return client.query(`   INSERT INTO macchine
+    return client.query(`   INSERT INTO macchina
                             (targa, modello)
                             VALUES($1, $2);`,
                             [newMacchina.targa,newMacchina.modello])
