@@ -27,7 +27,7 @@ router.get('/emissione',(req,res)=>{
 
 router.post('/chiusura',(req,res)=>{
     const id = req.body.id;
-    const oraUscita = req.body.oraUscita;
+    const oraUscita = new Date(req.body.oraUscita);
     //Servizio di chiusura di un ticket con l'aggiornamento del campo ora di uscita
     ticketService.updateTicket(id,oraUscita).then(result => res.json(result));
 });

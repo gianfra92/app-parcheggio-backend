@@ -54,8 +54,8 @@ const getTicketsJoinMacchine = (targa,posto)=>{
 
 const updateTicket = (id,oraUscita)=>{
     return client.query(`   UPDATE ticket
-                            SET  ora_uscita=$1
-                            WHERE id=$2;`,
+                            SET  ora_uscita=$2
+                            WHERE id=$1;`,
                             [id,oraUscita])
                             .then(()=> 'ok')
                             .catch(error=>{
